@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amsyar Razak · Professional Resume</title>
+  <!-- Font Awesome (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+      background: #f0f5fe; /* soft blue background */
+      color: #0b2b4a;
+      line-height: 1.5;
+      padding: 2rem 1.5rem;
+    }
+
+    /* main card – white with subtle shadow & animation */
+    .resume-card {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 32px;
+      box-shadow: 0 20px 40px -12px rgba(0, 40, 80, 0.25);
+      padding: 2.5rem 2.8rem;
+      transition: all 0.25s ease;
+      animation: fadeUp 0.7s ease-out;
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(24px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== HEADER with profile pic ===== */
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid #e6f0ff;
+      padding-bottom: 2rem;
+    }
+
+    .profile-pic {
+      flex-shrink: 0;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #d4e2fc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 4px solid white;
+      box-shadow: 0 8px 16px rgba(0, 60, 130, 0.12);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .profile-pic:hover {
+      transform: scale(1.02);
+    }
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .name-title h1 {
+      font-size: 2.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #0a2a4a;
+      margin-bottom: 0.25rem;
+    }
+    .name-title .badge {
+      background: #e4edfc;
+      color: #1a4d7a;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      display: inline-block;
+      margin-top: 0.2rem;
+      border: 1px solid #b8d0f0;
+    }
+    .name-title .subhead {
+      color: #2a5f8a;
+      font-weight: 400;
+      font-size: 1.2rem;
+      margin-top: 0.3rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.2rem;
+    }
+    .name-title .subhead i {
+      margin-right: 0.3rem;
+      color: #2b6c9e;
+      width: 1.2rem;
+    }
+
+    /* ===== grid layout ===== */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 2.2fr;
+      gap: 2rem;
+      margin-top: 0.5rem;
+    }
+
+    /* left column */
+    .left-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* section styling */
+    .section {
+      background: #f8fbff;
+      border-radius: 24px;
+      padding: 1.4rem 1.6rem;
+      box-shadow: 0 2px 8px rgba(0, 40, 80, 0.03);
+      transition: box-shadow 0.2s;
+      border: 1px solid #eaf1fd;
+    }
+    .section:hover {
+      box-shadow: 0 8px 18px rgba(20, 60, 120, 0.06);
+    }
+
+    .section-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+      color: #1a4d7a;
+      border-bottom: 2px solid #d7e6ff;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-title i {
+      color: #2b6c9e;
+      font-size: 1.2rem;
+      width: 1.6rem;
+    }
+
+    /* core competencies chips */
+    .skills-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.5rem;
+    }
+    .skill-chip {
+      background: white;
+      border: 1px solid #c8ddfa;
+      color: #1a4a77;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 0.15s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+    }
+    .skill-chip:hover {
+      background: #dceaff;
+      border-color: #7ca4db;
+      transform: translateY(-1px);
+    }
+
+    /* list items (experience, edu) */
+    .exp-item, .edu-item {
+      margin-bottom: 1.2rem;
+    }
+    .exp-item:last-child, .edu-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.8rem;
+      margin-bottom: 0.2rem;
+    }
+    .exp-title {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #0e3d63;
+    }
+    .exp-org {
+      font-weight: 500;
+      color: #1a4d7a;
+    }
+    .exp-date {
+      font-size: 0.8rem;
+      background: #e2edfe;
+      padding: 0.1rem 0.9rem;
+      border-radius: 30px;
+      color: #1a4d7a;
+      white-space: nowrap;
+    }
+    .exp-desc {
+      font-size: 0.92rem;
+      color: #1e3f5e;
+      margin-top: 0.3rem;
+      padding-left: 0.2rem;
+      list-style: none;
+    }
+    .exp-desc li {
+      margin-bottom: 0.3rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+    .exp-desc li i {
+      color: #2b6c9e;
+      font-size: 0.7rem;
+      margin-top: 0.3rem;
+      width: 1.1rem;
+    }
+
+    .bullet-list {
+      list-style: none;
+      padding-left: 0.2rem;
+    }
+    .bullet-list li {
+      margin-bottom: 0.3rem;
+      display: flex;
+      gap: 0.5rem;
+      font-size: 0.92rem;
+      color: #1e3f5e;
+    }
+    .bullet-list li i {
+      color: #2b6c9e;
+      font-size: 0.7rem;
+      margin-top: 0.3rem;
+      width: 1.1rem;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.5rem;
+      margin-top: 0.3rem;
+    }
+    .tech-tag {
+      background: white;
+      border: 1px solid #c8ddfa;
+      border-radius: 30px;
+      padding: 0.1rem 0.9rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #1a4a77;
+    }
+
+    /* certifications / recognition */
+    .cert-item {
+      font-size: 0.92rem;
+      padding: 0.2rem 0 0.1rem;
+      border-bottom: 1px dashed #d7e6ff;
+      margin-bottom: 0.4rem;
+    }
+    .cert-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    .cert-item i {
+      color: #2b6c9e;
+      width: 1.4rem;
+    }
+
+    .inline-icon {
+      margin-right: 0.3rem;
+      color: #2b6c9e;
+    }
+
+    /* responsive */
+    @media screen and (max-width: 850px) {
+      .two-col {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .resume-card {
+        padding: 1.8rem 1.2rem;
+      }
+      .profile-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .name-title .subhead {
+        justify-content: center;
+      }
+    }
+    @media screen and (max-width: 480px) {
+      .profile-pic {
+        width: 100px;
+        height: 100px;
+      }
+      .name-title h1 {
+        font-size: 2.2rem;
+      }
+    }
+
+    /* small extra animations */
+    .section {
+      transition: transform 0.2s ease, box-shadow 0.2s;
+    }
+    .section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px -6px rgba(0, 60, 120, 0.08);
+    }
+
+    .exp-item .exp-title {
+      transition: color 0.2s;
+    }
+    .exp-item:hover .exp-title {
+      color: #0057a3;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #dce8fa;
+      margin: 0.6rem 0;
+    }
+  </style>
+</head>
+<body>
+<div class="resume-card">
+
+  <!-- ========== HEADER with profile picture ========== -->
+  <header class="profile-header">
+    <div class="profile-pic">
+      <!-- Replace "profile.jpg" with your own image file -->
+      <img src="profile.jpg" alt="Amsyar Razak profile" />
+    </div>
+    <div class="name-title">
+      <h1>Amsyar Razak</h1>
+      <div class="badge"><i class="fas fa-graduation-cap" style="margin-right:6px;"></i> B.Sc. Industrial Chemistry · USM 2026</div>
+      <div class="subhead">
+        <span><i class="fas fa-flask"></i> Analytical &amp; Process Chemist</span>
+        <span><i class="fas fa-industry"></i> QA/QC · Water Treatment</span>
+        <span><i class="fas fa-car"></i> Automotive (Perodua)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== TWO-COLUMN LAYOUT ========== -->
+  <div class="two-col">
+
+    <!-- ===== LEFT PANEL ===== -->
+    <div class="left-panel">
+
+      <!-- Core competencies -->
+      <section class="section">
+        <div class="section-title"><i class="fas fa-bolt"></i> Core competencies</div>
+        <div class="skills-chips">
+          <span class="skill-chip">Analytical Chemistry</span>
+          <span class="skill-chip">Water Treatment</span>
+          <span class="skill-chip">QA/QC</span>
+          <span class="skill-chip">Root Cause (4M)</span>
+          <span class="skill-chip">CAPA</span>
+          <span class="skill-chip">Process Optimisation</span>
+          <span class="skill-chip">UV Disinfection</span>
+          <span class="skill-chip">Data Visualisation (Power BI)</span>
+          <span class="skill-chip">ISO 9001/14001/45001</span>
+          <span class="skill-chip">Kaizen</span>
+          <span class="skill-chip">Cross-functional</span>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="section">
+        <div class="section-title"><i class="fas fa-university"></i> Education</div>
+        <div class="edu-item">
+          <div class="exp-header">
+            <span class="exp-title">Universiti Sains Malaysia (USM)</span>
+            <span class="exp-date">Oct 2022 – Oct 2026</span>
+          </div>
+          <div style="font-weight:500; color:#1a4d7a;">B.Sc. Applied Science (Hons) Industrial Chemistry</div>
+          <div style="font-size:0.9rem; color:#2f5a7e; margin-top:0.2rem;">Pusat Pengajian Sains Kimia</div>
+        </div>
+        <div class="edu-item" style="margin-top:1rem;">
+          <div class="exp-header">
+            <span class="exp-title">Kedah Matriculation College</span>
+            <span class="exp-date">2019 – 2021</span>
+          </div>
+          <div style="font-weight:500; color:#1a4d7a;">Pure Science Certificate · CGPA 3.61</div>
+        </div>
+      </section>
+
+      <!-- Certifications & recognition -->
+      <section class="section">
+        <div class="section-title"><i class="fas fa-certificate"></i> Certifications</div>
+        <div class="cert-item"><i class="fas fa-chart-bar"></i> Power BI Fundamentals – DataCamp (2026)</div>
+        <div class="cert-item"><i class="fas fa-microchip"></i> Semiconductor Process Engineering – DreamCatcher (2025)</div>
+        <div class="cert-item"><i class="fas fa-biohazard"></i> Cleanroom Technology &amp; Practice – DreamCatcher (2025)</div>
+        <div class="cert-item"><i class="fas fa-skull-crossbones"></i> Chemical Spillage Safety – DreamCatcher (2025)</div>
+        <div class="cert-item"><i class="fas fa-trophy"></i> Certificate of Internship (outstanding) – Perodua (2026)</div>
+        <div class="cert-item"><i class="fas fa-id-card"></i> Valid Malaysian driving license</div>
+      </section>
+
+      <!-- Technical skills (compact) -->
+      <section class="section">
+        <div class="section-title"><i class="fas fa-code"></i> Technical skills</div>
+        <div style="margin-bottom:0.3rem;"><span style="font-weight:500;">Instrumentation:</span> HPLC · GC-MS · FTIR · UV-Vis · ultrasonic flowmeter · anemometer · spectrophotometer · coating gauge</div>
+        <div style="margin-bottom:0.3rem;"><span style="font-weight:500;">Water/process:</span> RO · mixed-bed DI · activated carbon · UV dose calc · biocide rotation · ED coating · zinc phosphating</div>
+        <div><span style="font-weight:500;">Quality &amp; software:</span> ISO 9001/14001/45001 · 4M · CAPA · QCC · GLP · Power BI · Excel · PowerPoint</div>
+      </section>
+    </div>
+
+    <!-- ===== RIGHT PANEL ===== -->
+    <div class="right-panel">
+
+      <!-- Professional summary -->
+      <section class="section">
+        <div class="section-title"><i class="fas fa-user-tie"></i> Professional summary</div>
+        <p style="font-size:0.95rem; color:#1e3f5e;">
+          Final-year B.Sc. Industrial Chemistry student (USM, graduating Oct 2026) with hands-on experience in
+          <strong>industrial water treatment, QA/QC, analytical chemistry, and process chemistry</strong>. 
+          During an 18-week internship at Perodua Global Manufacturing, led a full bacterial contamination investigation 
+          in the paint system – from root cause analysis to management-approved corrective programme. 
+          Awarded Certificate of Internship for outstanding performance. Proficient in HPLC, GC-MS, FTIR, UV-Vis, 
+          ISO systems, 4M/CAPA, Power BI, and cross-functional collaboration.
+        </p>
+      </section>
+
+      <!-- Professional experience (main) -->
+      <section class="section">
+        <div class="section-title"><i class="fas fa-briefcase"></i> Professional experience</div>
+
+        <!-- Perodua -->
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-title">Quality Initiator Team (QIT) Intern</span>
+            <span class="exp-date">Feb 2026 – Jun 2026</span>
+          </div>
+          <div class="exp-org"><i class="fas fa-building" style="margin-right:6px;"></i>Perodua Global Manufacturing Sdn. Bhd. · Rawang</div>
+          <ul class="exp-desc" style="list-style:none; padding-left:0;">
+            <li><i class="fas fa-circle"></i> <strong>Major project:</strong> Bacterial contamination in PT-ED system – led investigation, identified UV dose at 6.36 mJ/cm² (16% of standard), proposed UV upgrade + vent filters + biocide rotation; all approved.</li>
+            <li><i class="fas fa-circle"></i> Performed structured 4M root cause analysis (Man, Machine, Method, Material) and presented to Paint Shop Manager; received Certificate of Internship.</li>
+            <li><i class="fas fa-circle"></i> Coordinated with external vendors (Sime Kansai Paint, Johan Filtration) for biological testing and validation.</li>
+            <li><i class="fas fa-circle"></i> Routine: weekly HEX cleaning, kaizen tank compartmentalisation, QC checks (paint thickness, colour), cartridge filter maintenance, QCC meetings (fishbone, Pareto).</li>
+          </ul>
+        </div>
+
+        <!-- Lab experience (USM) -->
+        <div class="exp-item" style="margin-top:1.2rem;">
+          <div class="exp-header">
+            <span class="exp-title">Analytical &amp; Process Lab</span>
+            <span class="exp-date">2024 – Aug 2025</span>
+          </div>
+          <div class="exp-org"><i class="fas fa-flask" style="margin-right:6px;"></i>USM Industrial Chemistry Labs</div>
+          <ul class="exp-desc" style="list-style:none; padding-left:0;">
+            <li><i class="fas fa-circle"></i> Applied HPLC, GC-MS, FTIR, UV-Vis for quantitative identification, purity &amp; compliance testing.</li>
+            <li><i class="fas fa-circle"></i> Operated pilot-scale distillation columns, spray dryers, batch reactors; monitored flow rates &amp; separation to optimize yield.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Leadership & campus -->
+      <section class="section">
+        <div class="section-title"><i class="fas fa-users"></i> Leadership &amp; campus</div>
+        <ul class="bullet-list">
+          <li><i class="fas fa-chevron-right"></i> <strong>Protege Club, USM</strong> – Head, Sports &amp; Recreational (Oct 2024–Aug 2025): shifted to skill-focused programmes, built talent pipeline for stage management &amp; emceeing.</li>
+          <li><i class="fas fa-chevron-right"></i> <strong>Festival Filem Anak Muda 2025</strong> – Asst. Head, Department Management: internal event policies, compliance, administrative second-in-command.</li>
+          <li><i class="fas fa-chevron-right"></i> <strong>University Residential Community</strong> – Sports &amp; Recreational Exco (Oct 2023–Aug 2024): organised inter/intra-residential sports programmes.</li>
+        </ul>
+      </section>
+
+      <!-- Additional: languages & recognition quick -->
+      <section class="section" style="background:white;">
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem 2rem;">
+          <span><i class="fas fa-language" style="color:#1a4d7a;"></i> English &amp; Bahasa Malaysia (fluent)</span>
+          <span><i class="fas fa-award" style="color:#1a4d7a;"></i> Certificate of Internship (PGMSB) · 2026</span>
+          <span><i class="fas fa-car" style="color:#1a4d7a;"></i> Valid driving license</span>
+        </div>
+      </section>
+    </div>
+  </div>
+  <!-- end two-col -->
+
+  <!-- small footer note (optional) -->
+  <div style="margin-top:2rem; font-size:0.75rem; color:#7a9bc7; border-top:1px solid #d7e6ff; padding-top:1.2rem; display:flex; justify-content:space-between; flex-wrap:wrap;">
+    <span><i class="fas fa-print"></i> Amsyar Razak · Industrial Chemistry · USM 2026</span>
+    <span><i class="fas fa-sync-alt fa-fw"></i> Updated August 2026</span>
+  </div>
+</div>
+<!-- end resume-card -->
+</body>
+</html>
